@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>slideShow</title>
+		<link href="css/style.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.2/handlebars.min.js"></script>
+		<script src="js/drawSlaider.js"></script>
+		<script src="js/imgs.js"></script>
+		<script id = "slideShowTemplate" type="text/x-handlebars-template">
+			{{#each this}}
+				<li><img src="{{src}}"	width="{{width}}" height="{{height}}" alt="{{alt}}" ></li>
+			{{/each}}
+		</script>
+	</head>
+	<body>
+		<div id = "slaider" class = "slaiderContainer">
+			<div class = "show">
+				<div class = "view">
+					<ul></ul>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(document).ready(function(){
+				var source = $('#slideShowTemplate').html();
+				console.log(source);
+				var template = Handlebars.compile(source);
+				$('.view ul').append(template(aImgs));
+				console.log(template);
+			
+				var slideShow = new SlideShow($('#slaider'),'900','400');
+				slideShow.run();
+			});
+		</script>
+	
+	</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,79 @@
+.slaiderContainer{
+	background-color:white;
+	z-index:0;
+	position:relative;
+
+}
+/* Двойной клик по кнопкам вперед/назад вызывает выделение всех элементов слайдера,
+поэтому предотвращаем это*/
+.slaiderContainer::-moz-selection { background: transparent; color: #fff; text-shadow: none; }
+.slaiderContainer::selection { background: transparent; color: #fff; text-shadow: none; }
+
+.slaiderContainer .view{
+	width:inherit;
+	height:inherit;
+	overflow: scroll;
+
+}
+.slaiderContainer .view ul{
+	list-style:none;
+	width: 10000px;
+	margin: 0;
+	padding: 0;
+}
+.slaiderContainer .view li{
+	float:left;
+}
+
+.slaiderContainer #prev{
+	cursor:pointer;
+	position: absolute;
+	display:block;
+	background-image: url(../images/prev.png);
+	opacity: 0.5;
+}
+.slaiderContainer #next{
+	cursor:pointer;
+	position: absolute;
+	display:block;
+	background-image: url(../images/next.png);
+	opacity: 0.5;
+}
+
+.slaiderContainer #prev:hover{
+	opacity: 1;
+}
+.slaiderContainer #next:hover{
+	opacity: 1;
+}
+
+
+
+/* Control Nav */
+.slaiderContainer .anim-dots{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    left: 0px;
+    bottom: 20px;
+    z-index: 2000;
+}
+.slaiderContainer .anim-dots span {
+    display: inline-block;
+    position: relative;
+    width: 14px;
+    height: 14px;
+    margin: 3px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset, 1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+.anim-dots span.anim-dots-this:after
+{
+	content: '';
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	background: rgb(255,255,255);
+}
