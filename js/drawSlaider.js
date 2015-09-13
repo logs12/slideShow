@@ -15,11 +15,13 @@ function SlideShow(container,width,height,options){
 	* autoPlay: boolean, - bool - true - вкючить автопрокрутку слайдов, false - выключить
 	* isBullets: boolean - bool - true - вкючить пагинацию буддетами, false - выключить
 	* }}
+	* slideTimeout: number - задержка переключений слайдов в миллисекундах
 	*/
 	var optionsDefault = {
 		'nav':true,
 		'autoPlay':true,
-		'isBullets':true
+		'isBullets':true,
+		'slideTimeout': 2000
 	}
 
 	this.options = options || optionsDefault;
@@ -130,8 +132,10 @@ function SlideShow(container,width,height,options){
 }
 
 
-
-
+/**
+ *	Функция переключения слайдов
+ * @param direction - атрибут кнопок вперед назад
+ */
 SlideShow.prototype.nextSlaid = function(direction){
 	var direction = direction || 'next';
 	(direction === 'next') ? ++this.current : --this.current;
@@ -177,14 +181,13 @@ SlideShow.prototype.clickNavButton = function() {
  */
 SlideShow.prototype.auto = function(){
 	var self = this;
-	var sliderTimer =  setInterval(function(){self.nextSlaid()},2000);
+	var slideTimer =  setInterval(function(){self.nextSlaid()},self.options.slideTimeout);
 	this.container.hover(
 		function(){
-			clearInterval(sliderTimer)
+			clearInterval(slideTimer);
 		},
 		function(){
-			sliderTimer = setInterval(function(){
-				self.nextSlaid()},2000);
+			slideTimer = setInterval(function(){self.nextSlaid()},self.options.slideTimeout);
 		}
 	);
 };

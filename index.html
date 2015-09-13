@@ -26,10 +26,8 @@
 		<script>
 			$(document).ready(function(){
 				var source = $('#slideShowTemplate').html();
-				console.log(source);
 				var template = Handlebars.compile(source);
 				$('.view ul').append(template(aImgs));
-				console.log(template);
 			
 				var slideShow = new SlideShow($('#slaider'),'900','400');
 				slideShow.run();
